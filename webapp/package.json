@@ -1,0 +1,48 @@
+{
+  "name": "saml-sp",
+  "version": "1.1.0",
+  "description": "Test Service Provider (SP) for SAML 2.0 Web Browser SSO Profile and Relying Party (RP) for WS-Federation Passive Requestor Profile",
+  "author": "Karl McGuinness",
+  "keywords": [
+    "saml",
+    "samlp",
+    "federation",
+    "wsfed",
+    "ws-federation",
+    "sso",
+    "okta"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mcguinness/saml-sp"
+  },
+  "bugs": {
+    "url": "https://github.com/mcguinness/saml-sp/issues"
+  },
+  "main": "./lib/main.js",
+  "bin": "./bin/server.js",
+  "scripts": {
+    "start": "node ./bin/server.js"
+  },
+  "engines": {
+    "node": ">=10.0.0"
+  },
+  "dependencies": {
+    "body-parser": "~1.19.0",
+    "connect-flash": "^0.1.1",
+    "cookie-parser": "~1.4.5",
+    "debug": "~4.1.1",
+    "express": "~4.17.1",
+    "express-session": "^1.17.1",
+    "got": "^11.2.0",
+    "hbs": "~4.1.1",
+    "morgan": "~1.10.0",
+    "passport": "^0.4.1",
+    "passport-wsfed-saml2": "3.0.13",
+    "samlp-logout": "2.3.3",
+    "underscore": "^1.10.2",
+    "xml2js": "^0.4.23",
+    "yargs": "^15.3.1"
+  }
+}

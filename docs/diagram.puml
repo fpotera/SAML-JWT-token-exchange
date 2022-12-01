@@ -1,0 +1,41 @@
+@startuml
+'https://plantuml.com/sequence-diagram
+
+Title Token exchange SAML/oAuth flow
+
+autonumber
+
+actor "User browser" as BRW
+
+participant "External App" as E_App
+participant "External IdP" as E_IdP
+
+participant "Internal IdP" as I_IdPI
+participant "APIGateway" as ApiGW
+participant "Internal App" as I_App
+
+BRW -[#yellow]> E_App: Connection request (with Kerberos browser token)
+E_App --[#yellow]> BRW: Redirect to External IdP (with SAML request attached)
+BRW -[#yellow]> E_IdP: Authentication request (with SAML request attached)
+E_IdP --[#yellow]> BRW: Authentication response (redirect to External App with SAML response attached)
+BRW -[#yellow]> E_App: Request access to External App (with SAML response attached)
+
+BRW -[#yellow]> E_App: Request the access to Internal App
+E_App --[#red]> BRW: Redirect to External IdP (with SAML assertion attached)
+BRW -[#red]> I_IdPI: Token exchange request (with SAML assertion attached)
+I_IdPI --[#red]> BRW: Token exchange response (redirect to External App with JWT token attached)
+
+BRW -[#blue]> E_App: Request access to External App (with JWT token attached)
+E_App --[#blue]> BRW: Redirect to APIGateway (with JWT token attached)
+BRW -[#blue]> ApiGW: Request access to Internal App (with JWT token attached))
+ApiGW -[#blue]> I_App: Request Internal App
+I_App --[#blue]> ApiGW: Response from Internal App
+ApiGW --[#blue]> BRW: Send response further
+
+legend
+in yellow - flow for external application
+in red - token exchange flow
+in blue - flow for internal application
+end legend
+
+@enduml

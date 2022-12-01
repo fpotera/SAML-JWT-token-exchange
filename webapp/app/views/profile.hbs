@@ -1,0 +1,189 @@
+<div class="col-md-8 col-md-offset-2">
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Identity Provider</div>
+    <div class="panel-body">
+      <form class="form-horizontal">
+
+        <div class="form-group">
+          <label for="issuer" class="col-sm-3 control-label">Issuer</label>
+          <div class="col-sm-9">
+            <p id="issuer" class="form-control-static">{{profile.issuer}}</p>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Subject Statement</div>
+    <div class="panel-body">
+      <form class="form-horizontal">
+
+        <div class="form-group">
+          <label for="nameID" class="col-sm-3 control-label">Name ID</label>
+          <div class="col-sm-9">
+            <p id="nameID" class="form-control-static">{{profile.subject.name}}</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="nameIDFormat" class="col-sm-3 control-label">Format</label>
+          <div class="col-sm-9">
+            <p id="nameIDFormat" class="form-control-static">{{profile.subject.format}}</p>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Authentication Statement</div>
+    <div class="panel-body">
+      <form class="form-horizontal">
+
+        <div class="form-group">
+          <label for="sessionIndex" class="col-sm-3 control-label">Session Index</label>
+          <div class="col-sm-9">
+            <p id="sessionIndex" class="form-control-static">{{profile.authnContext.sessionIndex}}</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="authnMethod" class="col-sm-3 control-label">Authentication Method</label>
+          <div class="col-sm-9">
+            <p id="authnMethod" class="form-control-static">{{profile.authnContext.authnMethod}}</p>
+          </div>
+        </div>
+
+      </form>
+    </div>
+  </div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">Attribute Statement (Claims)</div>
+    <div class="panel-body">
+      <form class="form-horizontal">
+        {{#each profile.claims}}
+          <div class="form-group">
+            <label for="{{@key}}" class="{{#ifSamlp}}col-sm-3{{else}}col-sm-8{{/ifSamlp}} control-label">{{@key}}</label>
+            <div class="{{#ifSamlp}}col-sm-9{{else}}col-sm-4{{/ifSamlp}}">
+              {{#ifArray this}}
+                {{#each this}}
+                  <p class="form-control-static">{{this}}</p>
+                {{/each}}
+              {{else}}
+                <p class="form-control-static">{{this}}</p>
+              {{/ifArray}}
+            </div>
+          </div>
+        {{/each}}
+      </form>
+    </div>
+  </div>
+
+
+  <div class="panel panel-default">
+    <div class="panel-heading">{{protocol}}</div>
+    <div class="panel-body">
+      <form class="form-horizontal">
+
+        {{#ifSamlp}}
+
+          <div class="form-group">
+            <label for="reqID" class="col-sm-3 control-label">Request ID</label>
+            <div class="col-sm-9">
+              <p id="reqID" class="form-control-static">{{request.request_id}}</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reqAuthnContextClassRef" class="col-sm-3 control-label">Request Authentication Context Class Reference</label>
+            <div class="col-sm-9">
+              <p id="reqAuthnContextClassRef" class="form-control-static">{{request.authnContext}}</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reqAcsUrl" class="col-sm-3 control-label">Request Assertion Consumer URL</label>
+            <div class="col-sm-9">
+              <p id="reqAcsUrl" class="form-control-static">{{request.callback}}</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reqRelayState" class="col-sm-3 control-label">Request RelayState</label>
+            <div class="col-sm-9">
+              <p id="reqRelayState" class="form-control-static">{{request.RelayState}}</p>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="form-group">
+            <label for="resDestination" class="col-sm-3 control-label">Response Destination</label>
+            <div class="col-sm-9">
+              <p id="resDestination" class="form-control-static">{{response.url}}</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="resRelayState" class="col-sm-3 control-label">Response RelayState</label>
+            <div class="col-sm-9">
+              <p id="resRelayState" class="form-control-static">{{response.state}}</p>
+            </div>
+          </div>
+
+        {{else}}
+
+          <div class="form-group">
+            <label for="reqReply" class="col-sm-3 control-label">Security Token Response Reply URL</label>
+            <div class="col-sm-9">
+              <p id="reqReply" class="form-control-static">{{request.wreply}}</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="reqContextState" class="col-sm-3 control-label">Request Context State</label>
+            <div class="col-sm-9">
+              <p id="reqContextState" class="form-control-static">{{request.wctx}}</p>
+            </div>
+          </div>
+
+          <hr>
+
+          <div class="form-group">
+            <label for="resUrl" class="col-sm-3 control-label">Security Token Response URL</label>
+            <div class="col-sm-9">
+              <p id="reqresUrlID" class="form-control-static">{{response.url}}</p>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="resContextState" class="col-sm-3 control-label">Response Context State</label>
+            <div class="col-sm-9">
+              <p id="resContextState" class="form-control-static">{{response.state}}</p>
+            </div>
+          </div>
+
+        {{/ifSamlp}}
+
+      </form>
+    </div>
+  </div>
+
+  <form class="form-horizontal">
+    <div class="form-group">
+      <div class="col-md-12 text-right">
+        <a href="/login" class="btn btn-default input-xlarge">Sign-in</a>
+        {{#ifSamlp}}
+        <a href="/login?forceauthn" class="btn btn-default input-xlarge">Force Sign-in</a>
+        {{/ifSamlp}}
+        <a href="/logout" class="btn btn-primary input-xlarge">Sign-out</a>
+      </div>
+    </div>
+  </form>
+
+</div>
