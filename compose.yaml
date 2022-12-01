@@ -1,0 +1,49 @@
+services:
+  pingfederate:
+    image: ${PING_IDENTITY_DEVOPS_REGISTRY:-docker.io/pingidentity}/pingfederate:${PING_IDENTITY_DEVOPS_TAG:-edge}
+    # You may need to comment this tmpfs line if you run containers on windows
+    tmpfs: /run/secrets
+    environment:
+      - SERVER_PROFILE_URL=https://github.com/pingidentity/pingidentity-server-profiles.git
+      - SERVER_PROFILE_PATH=getting-started/pingfederate
+      - PF_LDAP_USERNAME="Administrator"
+      - PF_LDAP_PASSWORD="2FederateM0re"
+    env_file:
+      - ${HOME}/.pingidentity/config
+    ports:
+      - "9031:9031"
+      - "9999:9999"
+    networks:
+      - test-net
+    volumes:
+      - pingfederate-out:/opt/out
+
+  firefox:
+    image: jlesage/firefox
+    ports:
+      - "5800:5800"
+    networks:
+      - test-net
+    volumes:
+      - firefox-out:/config
+    shm_size: "2g"
+
+  node:
+    image: node-test
+    build:
+      context: ./webapp
+      target: node-test
+    networks:
+      - test-net
+    expose:
+      - "8081"
+    depends_on:
+      pingfederate:
+        condition: service_healthy
+
+networks:
+  test-net:
+
+volumes:
+  pingfederate-out:
+  firefox-out:
