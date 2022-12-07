@@ -13,4 +13,4 @@ COPY package.json package-lock.json ./
 
 RUN npm install
 
-CMD ["node", "bin/server.js", "-p", "8081","--idpMetaUrl", "https://pingfederate:9031/pf/federation_metadata.ping?PartnerSpId=EU"]
+CMD ["node", "bin/server.js", "-p", "8081","--idpMetaUrl", "https://pingfederate:9031/pf/federation_metadata.ping?PartnerSpId=urn%3Aexample%3Asp"]

@@ -1,4 +1,4 @@
 #!/usr/bin/env node
 'use strict';
 
-require('../lib/main').main();
+require('../lib/api-configurator').configure();

@@ -1,0 +1,88 @@
+{
+  "type": "SP",
+  "name": "urn:example:sp",
+  "entityId": "urn:example:sp",
+  "active": true,
+  "contactInfo": {},
+  "loggingMode": "STANDARD",
+  "virtualEntityIds": [],
+  "licenseConnectionGroup": "",
+  "credentials": {
+    "certs": [],
+    "signingSettings": {
+      "signingKeyPairRef": {
+        "id": "%id%",
+        "location": "https://localhost:9999/pf-admin-api/v1/keyPairs/signing/5afkmx5miaxlhpjx3i0v34iwq"
+      },
+      "algorithm": "SHA256withRSA",
+      "includeCertInSignature": false,
+      "includeRawKeyInSignature": false
+    }
+  },
+  "spBrowserSso": {
+    "protocol": "SAML20",
+    "enabledProfiles": [
+      "SP_INITIATED_SSO"
+    ],
+    "incomingBindings": [
+      "POST",
+      "REDIRECT"
+    ],
+    "ssoServiceEndpoints": [
+      {
+        "binding": "POST",
+        "url": "http://node:8081/saml/sso",
+        "isDefault": true,
+        "index": 0
+      }
+    ],
+    "signAssertions": false,
+    "signResponseAsRequired": true,
+    "spSamlIdentityMapping": "STANDARD",
+    "requireSignedAuthnRequests": false,
+    "assertionLifetime": {
+      "minutesBefore": 5,
+      "minutesAfter": 5
+    },
+    "encryptionPolicy": {
+      "encryptAssertion": false,
+      "encryptSloSubjectNameId": false,
+      "sloSubjectNameIDEncrypted": false,
+      "encryptedAttributes": []
+    },
+    "attributeContract": {
+      "coreAttributes": [
+        {
+          "name": "SAML_SUBJECT",
+          "nameFormat": "urn:oasis:names:tc:SAML:1.1:nameid-format:emailAddress"
+        }
+      ],
+      "extendedAttributes": []
+    },
+    "adapterMappings": [
+      {
+        "attributeSources": [],
+        "attributeContractFulfillment": {
+          "SAML_SUBJECT": {
+            "source": {
+              "type": "ADAPTER"
+            },
+            "value": "username"
+          }
+        },
+        "issuanceCriteria": {
+          "conditionalCriteria": []
+        },
+        "restrictVirtualEntityIds": false,
+        "restrictedVirtualEntityIds": [],
+        "idpAdapterRef": {
+          "id": "TestAdapter",
+          "location": "https://localhost:9999/pf-admin-api/v1/idp/adapters/Adapter"
+        },
+        "abortSsoTransactionAsFailSafe": false
+      }
+    ],
+    "authenticationPolicyContractAssertionMappings": []
+  },
+  "connectionTargetType": "STANDARD"
+}
