@@ -4,12 +4,13 @@ WORKDIR /app
 
 ENV NODE_TLS_REJECT_UNAUTHORIZED=0
 
-COPY app/ app
+COPY saml-sp-demo/app/ app
 COPY bin/ bin
-COPY config/ config
+COPY saml-sp-demo/config/ config
+COPY saml-sp-demo/lib/ lib
 COPY lib/ lib
 
-COPY package.json package-lock.json ./
+COPY saml-sp-demo/package.json saml-sp-demo/package-lock.json ./
 
 RUN npm install
 

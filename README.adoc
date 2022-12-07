@@ -1,4 +1,0 @@
-
-
-plantuml::docs/diagram.puml[format=png]
-
