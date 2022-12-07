@@ -15,8 +15,8 @@ services:
       - "9999:9999"
     networks:
       - test-net
-    volumes:
-      - pingfederate-out:/opt/out
+#    volumes:
+#      - pingfederate-out:/opt/out
 
   firefox:
     image: jlesage/firefox
@@ -45,5 +45,5 @@ networks:
   test-net:
 
 volumes:
-  pingfederate-out:
   firefox-out:
+#  pingfederate-out:

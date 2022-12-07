@@ -1,0 +1,10 @@
+{
+  "commonName": "A",
+  "subjectAlternativeNames": [],
+  "organization": "B",
+  "country": "DE",
+  "validDays": 10,
+  "keyAlgorithm": "RSA",
+  "keySize": 2048,
+  "signatureAlgorithm": "SHA256withRSA"
+}
