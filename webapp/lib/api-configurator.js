@@ -59,5 +59,13 @@ exports.configure = async function () {
 
     const testSPConnection = await call('/pf-admin-api/v1/idp/spConnections', '/jsons/TestSPConnection.json', 'POST', {'%id%': id});
 
+    const testTokenProcessor = await call('/pf-admin-api/v1/idp/tokenProcessors', '/jsons/TestTokenProcessor.json', 'POST', null);
+
+    const testTokenManager = await call('/pf-admin-api/v1/oauth/accessTokenManagers', '/jsons/TestTokenManager.json', 'POST', null);
+
+    const testProcessorPolicy = await call('/pf-admin-api/v1/oauth/tokenExchange/processor/policies', '/jsons/TestProcessorPolicy.json', 'POST', null);
+
+    const testClient = await call('/pf-admin-api/v1/oauth/clients', '/jsons/TestClient.json', 'POST', null);
+
     main.main();
 }

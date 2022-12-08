@@ -1,0 +1,36 @@
+{
+  "id": "TestProcessorPolicy",
+  "name": "TestProcessorPolicy",
+  "actorTokenRequired": false,
+  "attributeContract": {
+    "coreAttributes": [
+      {
+        "name": "subject"
+      }
+    ],
+    "extendedAttributes": []
+  },
+  "processorMappings": [
+    {
+      "attributeSources": [],
+      "attributeContractFulfillment": {
+        "subject": {
+          "source": {
+            "type": "SUBJECT_TOKEN"
+          },
+          "value": "SAML_SUBJECT"
+        }
+      },
+      "issuanceCriteria": {
+        "conditionalCriteria": []
+      },
+      "subjectTokenType": "urn:ietf:params:oauth:token-type:saml2",
+      "subjectTokenProcessor": {
+        "id": "TestTokenProcessor",
+        "location": "https://localhost:9999/pf-admin-api/v1/idp/tokenProcessors/TestTokenProcessor"
+      },
+      "actorTokenType": "",
+      "actorTokenProcessor": {}
+    }
+  ]
+}
