@@ -37,8 +37,8 @@ services:
       - test-net
     expose:
       - "8081"
-    volumes:
-      - node-out:/app
+#    volumes:
+#      - node-out:/app
     depends_on:
       pingfederate:
         condition: service_healthy
@@ -48,5 +48,5 @@ networks:
 
 volumes:
   firefox-out:
-  node-out:
+#  node-out:
 #  pingfederate-out:

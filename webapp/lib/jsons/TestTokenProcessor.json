@@ -1,0 +1,36 @@
+{
+  "id": "TestTokenProcessor",
+  "name": "TestTokenProcessor",
+  "pluginDescriptorRef": {
+    "id": "org.sourceid.wstrust.processor.saml.Saml20TokenProcessor",
+    "location": "https://localhost:9999/pf-admin-api/v1/idp/tokenProcessors/descriptors/org.sourceid.wstrust.processor.saml.Saml20TokenProcessor"
+  },
+  "configuration": {
+    "tables": [
+      {
+        "name": "Valid Certificate Issuer DNs",
+        "rows": []
+      },
+      {
+        "name": "Valid Certificate Subject DNs",
+        "rows": []
+      }
+    ],
+    "fields": [
+      {
+        "name": "Audience",
+        "value": "urn:example:sp"
+      }
+    ]
+  },
+  "attributeContract": {
+    "coreAttributes": [
+      {
+        "name": "SAML_SUBJECT",
+        "masked": false
+      }
+    ],
+    "extendedAttributes": [],
+    "maskOgnlValues": false
+  }
+}
